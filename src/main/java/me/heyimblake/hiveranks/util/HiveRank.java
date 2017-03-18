@@ -67,6 +67,33 @@ public enum HiveRank {
     }
 
     /**
+     * Sees if the rank is a premium rank. Excludes staff.
+     *
+     * @return true if premium, false otherwise
+     */
+    public boolean isPremium() {
+        return id >= 1 && id < 5;
+    }
+
+    /**
+     * Sees if the rank is a staff rank. Includes senior staff.
+     *
+     * @return true if staff or senior staff, false otherwise
+     */
+    public boolean isStaff() {
+        return id >= 5;
+    }
+
+    /**
+     * Sees if the rank is a senior staff rank.
+     *
+     * @return true if senior staff, false otherwise
+     */
+    public boolean isSeniorStaff() {
+        return id >= 6;
+    }
+
+    /**
      * Get a HiveRank from a supplied RankID. If the RankID is invalid, it will return the Regular rank.
      *
      * @param id the id of the rank

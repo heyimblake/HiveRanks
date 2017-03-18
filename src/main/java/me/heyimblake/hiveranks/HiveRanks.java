@@ -15,6 +15,7 @@ public class HiveRanks extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getPluginManager();
 
         CachedPlayerManager.getInstance().initializeDirectory();
+        ScoreboardManager.getInstance().initializeScoreboard();
 
         pluginManager.registerEvents(new PlayerJoinListener(), this);
         getCommand("test").setExecutor(new TestCommand());

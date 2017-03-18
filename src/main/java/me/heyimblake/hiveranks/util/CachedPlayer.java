@@ -3,6 +3,10 @@ package me.heyimblake.hiveranks.util;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import me.heyimblake.hiveranks.CachedPlayerManager;
+import me.heyimblake.hiveranks.ScoreboardManager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -104,5 +108,15 @@ public class CachedPlayer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        showIngameColors();
+    }
+
+    public void showIngameColors() {
+        Player player = Bukkit.getServer().getPlayer(uuid);
+        if (player == null)
+            return;
+        ScoreboardManager.getInstance().addPlayer(player);
+        player.setDisplayName(getActiveRank().getColor() + player.getName() + ChatColor.RESET);
     }
 }
