@@ -1,6 +1,6 @@
 package me.heyimblake.hiveranks;
 
-import me.heyimblake.hiveranks.command.TestCommand;
+import me.heyimblake.hiveranks.commands.HiveRanksCommand;
 import me.heyimblake.hiveranks.listeners.PlayerJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -18,7 +18,7 @@ public class HiveRanks extends JavaPlugin {
         ScoreboardManager.getInstance().initializeScoreboard();
 
         pluginManager.registerEvents(new PlayerJoinListener(), this);
-        getCommand("test").setExecutor(new TestCommand());
+        getCommand("hiveranks").setExecutor(new HiveRanksCommand());
     }
 
     @Override

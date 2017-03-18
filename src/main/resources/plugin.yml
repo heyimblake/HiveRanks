@@ -4,4 +4,5 @@ description: ${project.description}
 author: heyimblake
 main: me.heyimblake.hiveranks.HiveRanks
 commands:
-    test:
+    hiveranks:
+      aliases: hr
