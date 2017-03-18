@@ -25,10 +25,10 @@ public abstract class AnnotatedHiveRanksSubCommand {
     /**
      * To be ran if the CommandSender is a Player.
      */
-    public abstract void runPlayer();
+    public abstract boolean runPlayer();
 
     /**
      * To be ran if the CommandSender is not a Player.
      */
-    public abstract void runConsole();
+    public abstract boolean runConsole();
 }
