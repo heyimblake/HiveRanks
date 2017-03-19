@@ -12,6 +12,7 @@ A plugin by heyimblake.
 ## How do I download it?
 * You can download precompiled jars from the [releases page](https://github.com/heyimblake/HiveRanks/releases).
 * Or you can use [Maven](https://maven.apache.org/) to compile this yourself. Your choice!
+* Requires Java 8 and at least Bukkit/Spigot 1.9.
 
 ## Statistics
 * This plugin uses [bStats](https://bstats.org/plugin/bukkit/HiveRanks) to track basic server information. See their website for details to op-out.
