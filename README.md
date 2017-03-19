@@ -1,4 +1,4 @@
-# HiveRanks ![](https://api.travis-ci.org/heyimblake/HiveRanks.svg?branch=master)
+# HiveRanks [![Build Status](https://api.travis-ci.org/heyimblake/HiveRanks.svg?branch=master)](https://travis-ci.org/heyimblake/HiveRanks)
 A plugin by heyimblake.
 
 ## So what exactly is this?
