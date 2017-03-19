@@ -8,6 +8,7 @@ import me.heyimblake.hiveranks.util.CachedPlayer;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -36,7 +37,7 @@ public class GetSubCommand extends AnnotatedHiveRanksSubCommand {
             return true;
         }
         if (!cachedPlayerManager.isCached(target.getUniqueId())) {
-            MessageUtils.sendErrorMessage(player, "Sorry, but " + player.getName() + " does not have a cached rank.", true);
+            MessageUtils.sendErrorMessage(player, "Sorry, but " + target.getName() + " does not have a cached rank.", true);
             return true;
         }
         CachedPlayer targetCache = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
@@ -48,6 +49,21 @@ public class GetSubCommand extends AnnotatedHiveRanksSubCommand {
 
     @Override
     public boolean runConsole() {
+        CommandSender sender = getHandler().getCommandSender();
+        Player target = Bukkit.getPlayer(getHandler().getArguments()[0]);
+        CachedPlayerManager cachedPlayerManager = CachedPlayerManager.getInstance();
+        if (target == null) {
+            sender.sendMessage("Sorry, that player could not be found! Either they are not online or their name was typed incorrectly.");
+            return true;
+        }
+        if (!cachedPlayerManager.isCached(target.getUniqueId())) {
+            sender.sendMessage("Sorry, but " + target.getName() + " does not have a cached rank.");
+            return true;
+        }
+        CachedPlayer targetCache = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
+        sender.sendMessage(String.format("The Hive rank of %s is %s.", target.getName(), targetCache.getHiveRank().getNiceName()));
+        if (!targetCache.isHiveRankActive())
+            sender.sendMessage(String.format("However, they appear as %s.", targetCache.getActiveRank().getNiceName()));
         return true;
     }
 }

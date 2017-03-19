@@ -10,6 +10,7 @@ import me.heyimblake.hiveranks.util.HiveRank;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -57,6 +58,28 @@ public class SetSubCommand extends AnnotatedHiveRanksSubCommand {
 
     @Override
     public boolean runConsole() {
+        CommandSender sender = getHandler().getCommandSender();
+        Player target = Bukkit.getPlayer(getHandler().getArguments()[0]);
+        CachedPlayerManager cachedPlayerManager = CachedPlayerManager.getInstance();
+        if (getHandler().getArguments().length != 2)
+            return false;
+        if (target == null) {
+            sender.sendMessage("Sorry, that player could not be found! Either they are not online or their name was typed incorrectly.");
+            return true;
+        }
+        if (!cachedPlayerManager.isCached(target.getUniqueId())) {
+            sender.sendMessage("Hmph, the target player is online yet doesn't have a rank cached. Perhaps they should relog?");
+            return true;
+        }
+        try {
+            Integer.parseInt(getHandler().getArguments()[1]);
+        } catch (Exception e) {
+            sender.sendMessage("Rank IDs must be a number.");
+            return true;
+        }
+        int updateRankID = Integer.parseInt(getHandler().getArguments()[1]);
+        new UpdateCacheRunnable(target.getUniqueId(), updateRankID).runTaskAsynchronously(HiveRanks.getInstance());
+        sender.sendMessage(String.format("Updating %s's rank to %s.", target.getName(), HiveRank.getHiveRankFromID(updateRankID).getNiceName()));
         return true;
     }
 }

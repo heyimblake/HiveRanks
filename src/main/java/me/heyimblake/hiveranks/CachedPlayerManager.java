@@ -20,6 +20,7 @@ public class CachedPlayerManager {
     private static CachedPlayerManager ourInstance = new CachedPlayerManager();
     private HashMap<UUID, CachedPlayer> uuidCachedPlayerHashMap;
     private String fileName = "_cache.json";
+
     private CachedPlayerManager() {
         uuidCachedPlayerHashMap = new HashMap<>();
     }
