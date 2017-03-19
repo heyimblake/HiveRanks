@@ -65,7 +65,7 @@ public class MessageUtils {
     public static void sendVariableErrorMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.RED + base, variables));
         if (playSound)
-            player.playSound(player.getEyeLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 2, 2);
+            player.playSound(player.getEyeLocation(), Sound.BLOCK_NOTE_BASS, 2, 2);
     }
 
     /**

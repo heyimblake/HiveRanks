@@ -67,7 +67,7 @@ public class HiveRanksCommand implements CommandExecutor {
 
         if (executor.requiresArgumentCompletion() && args.length < 2) {
             if (sender instanceof Player)
-                MessageUtils.sendVariableErrorMessage((Player) sender, true, "Not enough arguments! Usage: %s.", "/" + command.getName() + " " + executor.subCommand() + " " + executor.syntax());
+                MessageUtils.sendVariableErrorMessage((Player) sender, true, "Not enough arguments! Usage: %s.", "/" + command.getName() + " " + executor.subCommand() + " " + executor.syntax() + ".");
             else
                 sender.sendMessage("Not enough arguments! Usage: /" + executor.subCommand() + " " + executor.syntax());
             return true;
