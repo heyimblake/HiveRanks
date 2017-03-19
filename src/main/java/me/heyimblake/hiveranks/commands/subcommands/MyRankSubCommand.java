@@ -36,7 +36,7 @@ public class MyRankSubCommand extends AnnotatedHiveRanksSubCommand {
         CachedPlayer cachedPlayer = cachedPlayerManager.getCachedPlayer(player.getUniqueId());
         MessageUtils.sendVariableSuccessfulMessage(player, true, "Your HiveMC rank is %s.", cachedPlayer.getHiveRank().getColor() + cachedPlayer.getHiveRank().getNiceName() + ChatColor.GRAY);
         if (!cachedPlayer.isHiveRankActive())
-            MessageUtils.sendVariableSuccessfulMessage(player, false, "However, you appear as %s.",  cachedPlayer.getActiveRank().getColor() + cachedPlayer.getActiveRank().getNiceName() + ChatColor.GRAY);
+            MessageUtils.sendVariableSuccessfulMessage(player, false, "However, you appear as %s.", cachedPlayer.getActiveRank().getColor() + cachedPlayer.getActiveRank().getNiceName() + ChatColor.GRAY);
         return true;
     }
 

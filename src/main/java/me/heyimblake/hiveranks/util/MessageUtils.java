@@ -30,9 +30,9 @@ public class MessageUtils {
     /**
      * Sends a message, with optional sound, in the successful format with variable strings.
      *
-     * @param player the player to send the message to
+     * @param player    the player to send the message to
      * @param playSound true if also play a sound, false otherwise
-     * @param base the base message, with "%s" formatting
+     * @param base      the base message, with "%s" formatting
      * @param variables the variables to replace "%s"
      */
     public static void sendVariableSuccessfulMessage(Player player, boolean playSound, String base, String... variables) {
@@ -57,9 +57,9 @@ public class MessageUtils {
     /**
      * Sends a message, with optional sound, in the error format with variable strings.
      *
-     * @param player the player to send the message to
+     * @param player    the player to send the message to
      * @param playSound true if also play a sound, false otherwise
-     * @param base the base message, with "%s" formatting
+     * @param base      the base message, with "%s" formatting
      * @param variables the variables to replace "%s"
      */
     public static void sendVariableErrorMessage(Player player, boolean playSound, String base, String... variables) {

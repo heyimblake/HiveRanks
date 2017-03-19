@@ -8,7 +8,6 @@ import me.heyimblake.hiveranks.util.CachedPlayer;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -19,16 +18,14 @@ import java.util.UUID;
  */
 public class CachedPlayerManager {
     private static CachedPlayerManager ourInstance = new CachedPlayerManager();
+    private HashMap<UUID, CachedPlayer> uuidCachedPlayerHashMap;
+    private String fileName = "_cache.json";
+    private CachedPlayerManager() {
+        uuidCachedPlayerHashMap = new HashMap<>();
+    }
 
     public static CachedPlayerManager getInstance() {
         return ourInstance;
-    }
-
-    private HashMap<UUID, CachedPlayer> uuidCachedPlayerHashMap;
-    private String fileName = "_cache.json";
-
-    private CachedPlayerManager() {
-        uuidCachedPlayerHashMap = new HashMap<>();
     }
 
     /**

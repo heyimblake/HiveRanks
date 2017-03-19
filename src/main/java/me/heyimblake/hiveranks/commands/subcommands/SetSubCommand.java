@@ -6,7 +6,6 @@ import me.heyimblake.hiveranks.commands.AnnotatedHiveRanksSubCommand;
 import me.heyimblake.hiveranks.commands.HiveRanksSubCommandExecutor;
 import me.heyimblake.hiveranks.commands.HiveRanksSubCommandHandler;
 import me.heyimblake.hiveranks.runnables.UpdateCacheRunnable;
-import me.heyimblake.hiveranks.util.CachedPlayer;
 import me.heyimblake.hiveranks.util.HiveRank;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.Bukkit;

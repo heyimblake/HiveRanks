@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 /**
  * https://heyimblake.me
@@ -21,12 +20,12 @@ public class ScoreboardManager {
     private Scoreboard scoreboard;
     private boolean initialized;
 
-    public static ScoreboardManager getInstance() {
-        return instance;
-    }
-
     private ScoreboardManager() {
         initialized = false;
+    }
+
+    public static ScoreboardManager getInstance() {
+        return instance;
     }
 
     public void initializeScoreboard() {

@@ -31,6 +31,34 @@ public enum HiveRank {
     }
 
     /**
+     * Get a HiveRank from a supplied RankID. If the RankID is invalid, it will return the Regular rank.
+     *
+     * @param id the id of the rank
+     * @return the rank of the supplied rankid, regular if invalid
+     */
+    public static HiveRank getHiveRankFromID(int id) {
+        for (HiveRank rank : HiveRank.values()) {
+            if (rank.getId() == id)
+                return rank;
+        }
+        return REGULAR;
+    }
+
+    /**
+     * Gets a HiveRank from a supplied rank name from TheHive's API. Will return Regular rank if invalid.
+     *
+     * @param rankName hive rank name
+     * @return rank associated with supplied name, regular if invalid
+     */
+    public static HiveRank getHiveRankFromName(String rankName) {
+        for (HiveRank rank : HiveRank.values()) {
+            if (rank.getRankName().equals(rankName))
+                return rank;
+        }
+        return REGULAR;
+    }
+
+    /**
      * The integer representation of the rank.
      *
      * @return rankid
@@ -91,33 +119,5 @@ public enum HiveRank {
      */
     public boolean isSeniorStaff() {
         return id >= 6;
-    }
-
-    /**
-     * Get a HiveRank from a supplied RankID. If the RankID is invalid, it will return the Regular rank.
-     *
-     * @param id the id of the rank
-     * @return the rank of the supplied rankid, regular if invalid
-     */
-    public static HiveRank getHiveRankFromID(int id) {
-        for (HiveRank rank : HiveRank.values()) {
-            if (rank.getId() == id)
-                return rank;
-        }
-        return REGULAR;
-    }
-
-    /**
-     * Gets a HiveRank from a supplied rank name from TheHive's API. Will return Regular rank if invalid.
-     *
-     * @param rankName hive rank name
-     * @return rank associated with supplied name, regular if invalid
-     */
-    public static HiveRank getHiveRankFromName(String rankName) {
-        for (HiveRank rank : HiveRank.values()) {
-            if (rank.getRankName().equals(rankName))
-                return rank;
-        }
-        return REGULAR;
     }
 }

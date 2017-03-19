@@ -9,6 +9,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class HiveRanks extends JavaPlugin {
     private static HiveRanks instance;
 
+    /**
+     * Gets the instance of this class.
+     *
+     * @return instance of main class
+     */
+    public static HiveRanks getInstance() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -24,14 +33,5 @@ public class HiveRanks extends JavaPlugin {
     @Override
     public void onDisable() {
 
-    }
-
-    /**
-     * Gets the instance of this class.
-     *
-     * @return instance of main class
-     */
-    public static HiveRanks getInstance() {
-        return instance;
     }
 }
