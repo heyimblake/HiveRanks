@@ -2,6 +2,7 @@ package me.heyimblake.hiveranks.commands;
 
 import me.heyimblake.hiveranks.commands.subcommands.GetSubCommand;
 import me.heyimblake.hiveranks.commands.subcommands.MyRankSubCommand;
+import me.heyimblake.hiveranks.commands.subcommands.ResetSubCommand;
 import me.heyimblake.hiveranks.commands.subcommands.SetSubCommand;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.ChatColor;
@@ -31,6 +32,7 @@ public class HiveRanksCommand implements CommandExecutor {
         registerSubCommand(MyRankSubCommand.class);
         registerSubCommand(GetSubCommand.class);
         registerSubCommand(SetSubCommand.class);
+        registerSubCommand(ResetSubCommand.class);
     }
 
     @Override
