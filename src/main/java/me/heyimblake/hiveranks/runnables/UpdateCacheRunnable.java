@@ -6,6 +6,9 @@ import com.google.gson.JsonParser;
 import me.heyimblake.hiveranks.CachedPlayerManager;
 import me.heyimblake.hiveranks.util.CachedPlayer;
 import me.heyimblake.hiveranks.util.HiveRank;
+import me.heyimblake.hiveranks.util.MessageUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -54,16 +57,19 @@ public class UpdateCacheRunnable extends BukkitRunnable {
         CachedPlayerManager.getInstance().initializeFile(uuid);
         try {
             getUpdatedRanks();
-            CachedPlayerManager manager = CachedPlayerManager.getInstance();
-            if (manager.isCached(uuid)) {
-                manager.getCachedPlayer(uuid).update(updatedRanks[0].getId(), updatedRanks[1].getId());
-                return;
-            }
-            new CachedPlayer(uuid, updatedRanks[0].getId(), updatedRanks[1].getId(), System.currentTimeMillis()).update(updatedRanks[0].getId(), updatedRanks[1].getId());
-
         } catch (IOException e) {
             e.printStackTrace();
+            Player player = Bukkit.getPlayer(uuid);
+            if (player != null)
+                MessageUtils.sendErrorMessage(player, "An error occurred while trying to fetch your HiveMC rank. Be sure you have joined TheHive by connecting to \"play.hivemc.com\" and returning back here. See console for more details.", true);
+            return;
         }
+        CachedPlayerManager manager = CachedPlayerManager.getInstance();
+        if (manager.isCached(uuid)) {
+            manager.getCachedPlayer(uuid).update(updatedRanks[0].getId(), updatedRanks[1].getId());
+            return;
+        }
+        new CachedPlayer(uuid, updatedRanks[0].getId(), updatedRanks[1].getId(), System.currentTimeMillis()).update(updatedRanks[0].getId(), updatedRanks[1].getId());
     }
 
     /**
