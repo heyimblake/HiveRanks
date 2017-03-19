@@ -6,6 +6,7 @@ import me.heyimblake.hiveranks.commands.AnnotatedHiveRanksSubCommand;
 import me.heyimblake.hiveranks.commands.HiveRanksSubCommandExecutor;
 import me.heyimblake.hiveranks.commands.HiveRanksSubCommandHandler;
 import me.heyimblake.hiveranks.runnables.UpdateCacheRunnable;
+import me.heyimblake.hiveranks.util.CachedPlayer;
 import me.heyimblake.hiveranks.util.HiveRank;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.Bukkit;
@@ -50,9 +51,10 @@ public class SetSubCommand extends AnnotatedHiveRanksSubCommand {
             MessageUtils.sendErrorMessage(player, "Ranks IDs must be a number.", true);
             return true;
         }
+        CachedPlayer cachedPlayer = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
         int updateRankID = Integer.parseInt(getHandler().getArguments()[1]);
-        new UpdateCacheRunnable(target.getUniqueId(), updateRankID).runTaskAsynchronously(HiveRanks.getInstance());
-        MessageUtils.sendVariableSuccessfulMessage(player, true, "Updating %s's rank to %s.", target.getName(), HiveRank.getHiveRankFromID(updateRankID).getColor() + HiveRank.getHiveRankFromID(updateRankID).getNiceName() + ChatColor.GRAY);
+        cachedPlayer.update(updateRankID, cachedPlayer.getHiveRank().getId());
+        MessageUtils.sendVariableSuccessfulMessage(player, true, "Updated %s's visible rank to %s.", ChatColor.WHITE + target.getName() + ChatColor.GRAY, HiveRank.getHiveRankFromID(updateRankID).getColor() + HiveRank.getHiveRankFromID(updateRankID).getNiceName() + ChatColor.GRAY);
         return true;
     }
 
@@ -77,9 +79,10 @@ public class SetSubCommand extends AnnotatedHiveRanksSubCommand {
             sender.sendMessage("Rank IDs must be a number.");
             return true;
         }
+        CachedPlayer cachedPlayer = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
         int updateRankID = Integer.parseInt(getHandler().getArguments()[1]);
-        new UpdateCacheRunnable(target.getUniqueId(), updateRankID).runTaskAsynchronously(HiveRanks.getInstance());
-        sender.sendMessage(String.format("Updating %s's rank to %s.", target.getName(), HiveRank.getHiveRankFromID(updateRankID).getNiceName()));
+        cachedPlayer.update(updateRankID, cachedPlayer.getHiveRank().getId());
+        sender.sendMessage(String.format("Updated %s's visible rank to %s.", target.getName(), HiveRank.getHiveRankFromID(updateRankID).getNiceName()));
         return true;
     }
 }

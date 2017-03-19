@@ -67,7 +67,7 @@ public class HiveRanksCommand implements CommandExecutor {
 
         if (executor.requiresArgumentCompletion() && args.length < 2) {
             if (sender instanceof Player)
-                MessageUtils.sendVariableErrorMessage((Player) sender, true, "Not enough arguments! Usage: %s.", "/" + command.getName() + " " + executor.subCommand() + " " + executor.syntax() + ".");
+                MessageUtils.sendVariableErrorMessage((Player) sender, true, "Not enough arguments! Usage: %s.", "/" + command.getName() + " " + executor.subCommand() + " " + executor.syntax());
             else
                 sender.sendMessage("Not enough arguments! Usage: /" + executor.subCommand() + " " + executor.syntax());
             return true;
@@ -112,7 +112,7 @@ public class HiveRanksCommand implements CommandExecutor {
                 result = subCommandInstance.runConsole();
             }
             if (!result) {
-                handler.getCommandSender().sendMessage(MessageUtils.getPrefix() + ChatColor.RED + "Not enough arguments! Usage: /" + command.getName() + " " + annotation.subCommand() + " " + annotation.syntax());
+                handler.getCommandSender().sendMessage(MessageUtils.getPrefix() + ChatColor.DARK_RED + "Not enough arguments! Usage: /" + command.getName() + " " + annotation.subCommand() + " " + annotation.syntax() + ".");
             }
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

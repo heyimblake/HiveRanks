@@ -8,6 +8,7 @@ import me.heyimblake.hiveranks.commands.HiveRanksSubCommandHandler;
 import me.heyimblake.hiveranks.runnables.UpdateCacheRunnable;
 import me.heyimblake.hiveranks.util.MessageUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -41,7 +42,7 @@ public class ResetSubCommand extends AnnotatedHiveRanksSubCommand {
             return true;
         }
         new UpdateCacheRunnable(target.getUniqueId()).runTaskAsynchronously(HiveRanks.getInstance());
-        MessageUtils.sendSuccessfulMessage(player, "Resetting the rank of " + target.getName() + ".", true);
+        MessageUtils.sendSuccessfulMessage(player, "Resetting the rank of " + ChatColor.WHITE + target.getName() + ChatColor.GRAY + ".", true);
         return true;
     }
 

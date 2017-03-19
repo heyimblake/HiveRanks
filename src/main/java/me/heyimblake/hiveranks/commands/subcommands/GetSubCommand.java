@@ -41,7 +41,7 @@ public class GetSubCommand extends AnnotatedHiveRanksSubCommand {
             return true;
         }
         CachedPlayer targetCache = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
-        MessageUtils.sendVariableSuccessfulMessage(player, true, "The Hive rank of %s is %s.", target.getName(), targetCache.getHiveRank().getColor() + targetCache.getHiveRank().getNiceName() + ChatColor.GRAY);
+        MessageUtils.sendVariableSuccessfulMessage(player, true, "The HiveMC rank of %s is %s.", ChatColor.WHITE + target.getName() + ChatColor.GRAY, targetCache.getHiveRank().getColor() + targetCache.getHiveRank().getNiceName() + ChatColor.GRAY);
         if (!targetCache.isHiveRankActive())
             MessageUtils.sendVariableSuccessfulMessage(player, false, "However, they appear as %s.", targetCache.getActiveRank().getColor() + targetCache.getActiveRank().getNiceName() + ChatColor.GRAY);
         return true;
@@ -61,7 +61,7 @@ public class GetSubCommand extends AnnotatedHiveRanksSubCommand {
             return true;
         }
         CachedPlayer targetCache = cachedPlayerManager.getCachedPlayer(target.getUniqueId());
-        sender.sendMessage(String.format("The Hive rank of %s is %s.", target.getName(), targetCache.getHiveRank().getNiceName()));
+        sender.sendMessage(String.format("The HiveMC rank of %s is %s.", target.getName(), targetCache.getHiveRank().getNiceName()));
         if (!targetCache.isHiveRankActive())
             sender.sendMessage(String.format("However, they appear as %s.", targetCache.getActiveRank().getNiceName()));
         return true;
