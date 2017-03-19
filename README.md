@@ -6,6 +6,8 @@ A plugin by heyimblake.
 * By default, the plugin will fetch your HiveMC rank and apply the colors ingame.
 * You can use the different sub-commands ingame to set your or another player's colors to a different rank.
 * This is entirely visual and has no usage in permissions.
+* The HiveMC rank of players will update on a login after 30 minutes of the last update, or by using /hiveranks reset.
+* If you use a plugin that utilizes scoreboards, the player-list and nametag colors may not work.
 
 ## How do I download it?
 * You can download precompiled jars from the [releases page](https://github.com/heyimblake/HiveRanks/releases).
