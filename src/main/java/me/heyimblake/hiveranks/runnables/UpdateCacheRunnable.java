@@ -26,12 +26,23 @@ public class UpdateCacheRunnable extends BukkitRunnable {
     private HiveRank[] updatedRanks;
     private int displayRank;
 
+    /**
+     * Constructs an UpdateCacheRunnable object.
+     *
+     * @param uuid the uuid of the player to be updated
+     */
     public UpdateCacheRunnable(UUID uuid) {
         this.uuid = uuid;
         this.displayRank = -1;
         updatedRanks = new HiveRank[2]; // 0: Display, 1: Hive
     }
 
+    /**
+     * Constructs an UpdateCacheRunnable object.
+     *
+     * @param uuid        the uuid of the player to be updated
+     * @param displayRank the rankid of the display rank
+     */
     public UpdateCacheRunnable(UUID uuid, int displayRank) {
         this.uuid = uuid;
         this.displayRank = displayRank;
@@ -55,6 +66,11 @@ public class UpdateCacheRunnable extends BukkitRunnable {
         }
     }
 
+    /**
+     * Gets the updated Hive rank and sets the Display rank to a given one or the Hive one.
+     *
+     * @throws IOException related to URL connection
+     */
     private void getUpdatedRanks() throws IOException {
         URL url = new URL("https://api.hivemc.com/v1/player/" + uuid.toString().replaceAll("-", ""));
         HttpsURLConnection request = (HttpsURLConnection) url.openConnection();

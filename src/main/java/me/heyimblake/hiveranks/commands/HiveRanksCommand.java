@@ -75,6 +75,12 @@ public class HiveRanksCommand implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Prints a help screen to a CommandSender.
+     *
+     * @param command the base command
+     * @param sender  who to send the screen to
+     */
     private void showHelpScreen(Command command, CommandSender sender) {
         sender.sendMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "/" + command.getName() + " Sub-Commands:");
         for (Class<? extends AnnotatedHiveRanksSubCommand> clazz : subCommandClasses.values()) {
@@ -85,6 +91,13 @@ public class HiveRanksCommand implements CommandExecutor {
         }
     }
 
+    /**
+     * Performs the sub-command and outputs a usage message if necessary.
+     *
+     * @param command the base command
+     * @param clazz   the class extending annotatedhiverankssubcommand
+     * @param handler the hiverankssubcommandhandler
+     */
     private void performSubCommand(Command command, Class<? extends AnnotatedHiveRanksSubCommand> clazz, HiveRanksSubCommandHandler handler) {
         boolean result;
         try {
@@ -104,6 +117,11 @@ public class HiveRanksCommand implements CommandExecutor {
         }
     }
 
+    /**
+     * Registers a sub-command.
+     *
+     * @param annotatedHiveRanksSubCommand the subcommand class
+     */
     private void registerSubCommand(Class<? extends AnnotatedHiveRanksSubCommand> annotatedHiveRanksSubCommand) {
         subCommandClasses.put(getSubCommandClassAnnotation(annotatedHiveRanksSubCommand).subCommand(), annotatedHiveRanksSubCommand);
     }

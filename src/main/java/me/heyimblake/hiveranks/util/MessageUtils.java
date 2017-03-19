@@ -68,6 +68,11 @@ public class MessageUtils {
             player.playSound(player.getEyeLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 2, 2);
     }
 
+    /**
+     * Gets the chat prefix of the plugin.
+     *
+     * @return prefix
+     */
     public static String getPrefix() {
         return PREFIX;
     }

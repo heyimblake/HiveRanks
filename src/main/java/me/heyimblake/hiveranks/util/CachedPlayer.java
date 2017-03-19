@@ -110,6 +110,9 @@ public class CachedPlayer {
         showIngameColors();
     }
 
+    /**
+     * Updates the scoreboard and display name colors of the player. (If online)
+     */
     public void showIngameColors() {
         Player player = Bukkit.getServer().getPlayer(uuid);
         if (player == null)
