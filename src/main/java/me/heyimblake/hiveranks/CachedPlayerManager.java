@@ -111,4 +111,14 @@ public class CachedPlayerManager {
     public File getCacheFile(UUID uuid) {
         return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + fileName);
     }
+
+    /**
+     * Sees if a cache file for a UUID exists or not/
+     *
+     * @param uuid the uuid to look for
+     * @return true if exists, false otherwise
+     */
+    public boolean fileExists(UUID uuid) {
+        return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + fileName).exists();
+    }
 }
