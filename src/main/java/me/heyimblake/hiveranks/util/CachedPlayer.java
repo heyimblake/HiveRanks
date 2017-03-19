@@ -115,6 +115,6 @@ public class CachedPlayer {
         if (player == null)
             return;
         ScoreboardManager.getInstance().addPlayer(player);
-        player.setDisplayName(getActiveRank().getColor() + player.getName() + ChatColor.RESET);
+        player.setDisplayName(CachedPlayerManager.getInstance().getCachedPlayer(uuid).getActiveRank().getColor() + player.getName() + ChatColor.RESET);
     }
 }
