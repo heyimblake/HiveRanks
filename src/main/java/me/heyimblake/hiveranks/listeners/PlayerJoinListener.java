@@ -27,6 +27,7 @@ public class PlayerJoinListener implements Listener {
 
         if (manager.isCached(player.getUniqueId())) {
             CachedPlayer cachedPlayer = manager.getCachedPlayer(player.getUniqueId());
+
             if ((System.currentTimeMillis() - manager.getCachedPlayer(player.getUniqueId()).getCached()) >= 1800000) {
                 if (!cachedPlayer.isHiveRankActive())
                     new UpdateCacheRunnable(player.getUniqueId(), cachedPlayer.getActiveRank().getId()).runTaskAsynchronously(HiveRanks.getInstance());
@@ -34,6 +35,7 @@ public class PlayerJoinListener implements Listener {
                     new UpdateCacheRunnable(player.getUniqueId()).runTaskAsynchronously(HiveRanks.getInstance());
                 return;
             }
+
             cachedPlayer.showIngameColors();
             return;
         }

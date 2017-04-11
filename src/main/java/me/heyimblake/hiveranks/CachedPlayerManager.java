@@ -19,7 +19,7 @@ import java.util.UUID;
 public class CachedPlayerManager {
     private static CachedPlayerManager ourInstance = new CachedPlayerManager();
     private HashMap<UUID, CachedPlayer> uuidCachedPlayerHashMap;
-    private String fileName = "_cache.json";
+    private final String FILE_SUFFIX = "_cache.json";
 
     private CachedPlayerManager() {
         uuidCachedPlayerHashMap = new HashMap<>();
@@ -44,13 +44,13 @@ public class CachedPlayerManager {
      * @param uuid the uuid of the player
      */
     public void initializeFile(UUID uuid) {
-        File cacheFile = new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + fileName);
+        File cacheFile = new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + FILE_SUFFIX);
 
         if (!cacheFile.exists()) {
             try {
                 cacheFile.createNewFile();
                 try (InputStream is = HiveRanks.getInstance().getResource("cache.json");
-                     OutputStream os = new FileOutputStream(uuid.toString() + fileName)) {
+                     OutputStream os = new FileOutputStream(cacheFile)) {
                     ByteStreams.copy(is, os);
                     os.close();
                     is.close();
@@ -109,16 +109,16 @@ public class CachedPlayerManager {
      * @return cache file of the supplied uuid
      */
     public File getCacheFile(UUID uuid) {
-        return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + fileName);
+        return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + FILE_SUFFIX);
     }
 
     /**
-     * Sees if a cache file for a UUID exists or not/
+     * Sees if a cache file for a UUID exists or not.
      *
      * @param uuid the uuid to look for
      * @return true if exists, false otherwise
      */
     public boolean fileExists(UUID uuid) {
-        return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + fileName).exists();
+        return new File(HiveRanks.getInstance().getDataFolder().getPath(), uuid.toString() + FILE_SUFFIX).exists();
     }
 }
