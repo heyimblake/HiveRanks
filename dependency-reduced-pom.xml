@@ -4,7 +4,7 @@
   <groupId>me.heyimblake</groupId>
   <artifactId>hiveranks</artifactId>
   <name>HiveRanks</name>
-  <version>1.1.0-MC1.8.8</version>
+  <version>1.1.1-MC1.8.8</version>
   <description>A Bukkit plugin to retrieve a player's HiveMC rank.</description>
   <build>
     <defaultGoal>clean package</defaultGoal>

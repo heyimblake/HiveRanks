@@ -1,7 +1,6 @@
 package me.heyimblake.hiveranks.util;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 /**
@@ -23,8 +22,7 @@ public class MessageUtils {
      */
     public static void sendSuccessfulMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.GRAY + string);
-        if (playSound)
-            player.playSound(player.getEyeLocation(), Sound.LEVEL_UP, 2, 2);
+        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
     }
 
     /**
@@ -37,8 +35,7 @@ public class MessageUtils {
      */
     public static void sendVariableSuccessfulMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.GRAY + base, variables));
-        if (playSound)
-            player.playSound(player.getEyeLocation(), Sound.LEVEL_UP, 2, 2);
+        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
     }
 
     /**
@@ -50,8 +47,7 @@ public class MessageUtils {
      */
     public static void sendErrorMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.DARK_RED + string);
-        if (playSound)
-            player.playSound(player.getEyeLocation(), Sound.NOTE_BASS, 2, 1);
+        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
     }
 
     /**
@@ -64,8 +60,7 @@ public class MessageUtils {
      */
     public static void sendVariableErrorMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.DARK_RED + base, variables));
-        if (playSound)
-            player.playSound(player.getEyeLocation(), Sound.NOTE_BASS, 2, 2);
+        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
     }
 
     /**
