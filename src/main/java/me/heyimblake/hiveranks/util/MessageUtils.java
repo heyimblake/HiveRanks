@@ -22,7 +22,8 @@ public class MessageUtils {
      */
     public static void sendSuccessfulMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.GRAY + string);
-        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
+        if (playSound)
+            player.playSound(player.getEyeLocation(), ServerSound.LEVEL_UP.getSound(), 2, 2);
     }
 
     /**
@@ -35,7 +36,8 @@ public class MessageUtils {
      */
     public static void sendVariableSuccessfulMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.GRAY + base, variables));
-        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
+        if (playSound)
+            player.playSound(player.getEyeLocation(), ServerSound.LEVEL_UP.getSound(), 2, 2);
     }
 
     /**
@@ -47,7 +49,8 @@ public class MessageUtils {
      */
     public static void sendErrorMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.DARK_RED + string);
-        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
+        if (playSound)
+            player.playSound(player.getEyeLocation(), ServerSound.NOTE_BASS.getSound(), 2, 2);
     }
 
     /**
@@ -60,7 +63,8 @@ public class MessageUtils {
      */
     public static void sendVariableErrorMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.DARK_RED + base, variables));
-        //I really don't feel like supporting 1.8 and 1.9 base servers because of sound. So I'm just going to quietly remove it.
+        if (playSound)
+            player.playSound(player.getEyeLocation(), ServerSound.NOTE_BASS.getSound(), 2, 2);
     }
 
     /**
