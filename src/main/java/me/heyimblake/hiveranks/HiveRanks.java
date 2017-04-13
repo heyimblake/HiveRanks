@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class HiveRanks extends JavaPlugin {
     private static HiveRanks instance;
     private Metrics metrics;
+    private int serverVersion;
 
     /**
      * Gets the instance of this class.
@@ -20,6 +21,10 @@ public class HiveRanks extends JavaPlugin {
         return instance;
     }
 
+    public int getServerVersion(){
+    	return serverVersion;
+    }
+    
     @Override
     public void onEnable() {
         instance = this;
@@ -28,7 +33,11 @@ public class HiveRanks extends JavaPlugin {
         CachedPlayerManager.getInstance().initializeDirectory();
         ScoreboardManager.getInstance().initializeScoreboard();
 
+        
         metrics = new Metrics(this);
+        
+        getLogger().info("Server version is: " + Bukkit.getBukkitVersion());
+        serverVersion = Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[1]);
 
         pluginManager.registerEvents(new PlayerJoinListener(), this);
         getCommand("hiveranks").setExecutor(new HiveRanksCommand());
