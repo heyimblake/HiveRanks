@@ -23,7 +23,7 @@ public class MessageUtils {
     public static void sendSuccessfulMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.GRAY + string);
         if (playSound)
-            player.playSound(player.getEyeLocation(), SoundAdapter.LEVEL_UP.getBukkitSound(), 2, 2);
+            player.playSound(player.getEyeLocation(), ServerSound.LEVEL_UP.getSound(), 2, 2);
     }
 
     /**
@@ -37,7 +37,7 @@ public class MessageUtils {
     public static void sendVariableSuccessfulMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.GRAY + base, variables));
         if (playSound)
-            player.playSound(player.getEyeLocation(), SoundAdapter.LEVEL_UP.getBukkitSound(), 2, 2);
+            player.playSound(player.getEyeLocation(), ServerSound.LEVEL_UP.getSound(), 2, 2);
     }
 
     /**
@@ -50,7 +50,7 @@ public class MessageUtils {
     public static void sendErrorMessage(Player player, String string, boolean playSound) {
         player.sendMessage(PREFIX + ChatColor.DARK_RED + string);
         if (playSound)
-            player.playSound(player.getEyeLocation(), SoundAdapter.NOTE_BASS.getBukkitSound(), 2, 2);
+            player.playSound(player.getEyeLocation(), ServerSound.NOTE_BASS.getSound(), 2, 2);
     }
 
     /**
@@ -64,7 +64,7 @@ public class MessageUtils {
     public static void sendVariableErrorMessage(Player player, boolean playSound, String base, String... variables) {
         player.sendMessage(PREFIX + String.format(ChatColor.DARK_RED + base, variables));
         if (playSound)
-            player.playSound(player.getEyeLocation(), SoundAdapter.NOTE_BASS.getBukkitSound(), 2, 2);
+            player.playSound(player.getEyeLocation(), ServerSound.NOTE_BASS.getSound(), 2, 2);
     }
 
     /**
