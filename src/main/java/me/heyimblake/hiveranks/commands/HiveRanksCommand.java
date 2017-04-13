@@ -84,12 +84,12 @@ public class HiveRanksCommand implements CommandExecutor {
      * @param sender  who to send the screen to
      */
     private void showHelpScreen(Command command, CommandSender sender) {
-        sender.sendMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "/" + command.getName() + " Sub-Commands:");
+        sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "/" + command.getName() + " Sub-Commands:");
         for (Class<? extends AnnotatedHiveRanksSubCommand> clazz : subCommandClasses.values()) {
             HiveRanksSubCommandExecutor executor = getSubCommandClassAnnotation(clazz);
             sender.sendMessage(ChatColor.GRAY + "" + '\u25CF' + " " +
-                    ChatColor.AQUA + executor.subCommand() + " " + ChatColor.DARK_AQUA + executor.syntax() + ChatColor.DARK_GRAY + " - " +
-                    ChatColor.GOLD + executor.description());
+                    ChatColor.GOLD + executor.subCommand() + " " + ChatColor.DARK_GRAY + executor.syntax() + ChatColor.DARK_GRAY + " - " +
+                    ChatColor.GRAY + executor.description());
         }
     }
 
