@@ -33,11 +33,18 @@ A plugin by heyimblake.
 | Rank | ID |
 | ---- | --- |
 | Regular | 0 |
-| Gold | 1 |
-| Diamond | 2 |
-| Emerald | 3 |
-| VIP | 4 |
-| Moderator | 5 |
-| Senior Moderator | 6 |
-| Developer | 7 |
-| Owner | 8 |
+| Gold | 10 |
+| Diamond | 20 |
+| Emerald | 30 |
+| Ultimate | 40 |
+| VIP | 50 |
+| Youtuber | 51 |
+| Streamer | 52 |
+| Contributor | 53 |
+| Nectar | 54 |
+| Reserved_Staff | 60 |
+| Moderator | 70 |
+| Senior Moderator | 80 |
+| Staff Manager | 81 |
+| Developer | 90 |
+| Owner | 100 |
