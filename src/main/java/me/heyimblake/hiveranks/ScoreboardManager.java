@@ -37,7 +37,7 @@ public class ScoreboardManager {
     }
 
     private void setupRankTeam(HiveRank rank) {
-        String teamName = String.valueOf(rank.getId());
+        String teamName = String.valueOf(rank.getIndex());
         scoreboard.registerNewTeam(teamName);
         scoreboard.getTeam(teamName).setPrefix(String.valueOf(rank.getColor()));
         scoreboard.getTeam(teamName).setSuffix(String.valueOf(ChatColor.RESET));
@@ -46,12 +46,14 @@ public class ScoreboardManager {
     public void addPlayer(Player player) {
         if (player.getScoreboard() != scoreboard)
             player.setScoreboard(scoreboard);
+
         CachedPlayerManager manager = CachedPlayerManager.getInstance();
+
         if (!manager.isCached(player.getUniqueId()))
             return;
-        CachedPlayer cachedPlayer = manager.getCachedPlayer(player.getUniqueId());
-        scoreboard.getTeam(String.valueOf(cachedPlayer.getActiveRank().getId())).addEntry(player.getName());
 
+        CachedPlayer cachedPlayer = manager.getCachedPlayer(player.getUniqueId());
+        scoreboard.getTeam(String.valueOf(cachedPlayer.getActiveRank().getIndex())).addEntry(player.getName());
     }
 
     public Scoreboard getScoreboard() {

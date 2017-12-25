@@ -24,6 +24,7 @@ import org.bukkit.entity.Player;
         requiresArgumentCompletion = true,
         requiresAdminPermission = true)
 public class ResetSubCommand extends AnnotatedHiveRanksSubCommand {
+
     public ResetSubCommand(HiveRanksSubCommandHandler handler) {
         super(handler);
     }
@@ -33,16 +34,20 @@ public class ResetSubCommand extends AnnotatedHiveRanksSubCommand {
         Player player = (Player) getHandler().getCommandSender();
         Player target = Bukkit.getPlayer(getHandler().getArguments()[0]);
         CachedPlayerManager cachedPlayerManager = CachedPlayerManager.getInstance();
+
         if (target == null) {
             MessageUtils.sendErrorMessage(player, "Sorry, that player could not be found! Either they are not online or their name was typed incorrectly.", true);
             return true;
         }
+
         if (!cachedPlayerManager.isCached(target.getUniqueId())) {
             MessageUtils.sendErrorMessage(player, "Hmph, the target player is online yet doesn't have a rank cached. Perhaps they should relog?", true);
             return true;
         }
+
         new UpdateCacheRunnable(target.getUniqueId()).runTaskAsynchronously(HiveRanks.getInstance());
         MessageUtils.sendSuccessfulMessage(player, "Resetting the rank of " + ChatColor.WHITE + target.getName() + ChatColor.GRAY + ".", true);
+
         return true;
     }
 
@@ -51,16 +56,20 @@ public class ResetSubCommand extends AnnotatedHiveRanksSubCommand {
         CommandSender sender = getHandler().getCommandSender();
         Player target = Bukkit.getPlayer(getHandler().getArguments()[0]);
         CachedPlayerManager cachedPlayerManager = CachedPlayerManager.getInstance();
+
         if (target == null) {
             sender.sendMessage("Sorry, that player could not be found! Either they are not online or their name was typed incorrectly.");
             return true;
         }
+
         if (!cachedPlayerManager.isCached(target.getUniqueId())) {
             sender.sendMessage("Hmph, the target player is online yet doesn't have a rank cached. Perhaps they should relog?");
             return true;
         }
+
         new UpdateCacheRunnable(target.getUniqueId()).runTaskAsynchronously(HiveRanks.getInstance());
         sender.sendMessage("Resetting the rank of " + target.getName() + ".");
+
         return true;
     }
 }

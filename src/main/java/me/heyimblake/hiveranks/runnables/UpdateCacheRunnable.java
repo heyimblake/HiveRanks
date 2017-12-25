@@ -1,5 +1,7 @@
 package me.heyimblake.hiveranks.runnables;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -25,6 +27,7 @@ import java.util.UUID;
  * @since 3/17/2017
  */
 public class UpdateCacheRunnable extends BukkitRunnable {
+
     private UUID uuid;
     private HiveRank[] updatedRanks;
     private int displayRank;
@@ -35,9 +38,7 @@ public class UpdateCacheRunnable extends BukkitRunnable {
      * @param uuid the uuid of the player to be updated
      */
     public UpdateCacheRunnable(UUID uuid) {
-        this.uuid = uuid;
-        this.displayRank = -1;
-        updatedRanks = new HiveRank[2]; // 0: Display, 1: Hive
+        this(uuid, -1);
     }
 
     /**
@@ -55,6 +56,7 @@ public class UpdateCacheRunnable extends BukkitRunnable {
     @Override
     public void run() {
         CachedPlayerManager.getInstance().initializeFile(uuid);
+
         try {
             getUpdatedRanks();
         } catch (IOException e) {
@@ -64,12 +66,15 @@ public class UpdateCacheRunnable extends BukkitRunnable {
                 MessageUtils.sendErrorMessage(player, "An error occurred while trying to fetch your HiveMC rank. Be sure you have joined TheHive by connecting to \"play.hivemc.com\" and returning back here. See console for more details.", true);
             return;
         }
+
         CachedPlayerManager manager = CachedPlayerManager.getInstance();
+
         if (manager.isCached(uuid)) {
-            manager.getCachedPlayer(uuid).update(updatedRanks[0].getId(), updatedRanks[1].getId());
+            manager.getCachedPlayer(uuid).update(updatedRanks[0].getIndex(), updatedRanks[1].getIndex());
             return;
         }
-        new CachedPlayer(uuid, updatedRanks[0].getId(), updatedRanks[1].getId(), System.currentTimeMillis()).update(updatedRanks[0].getId(), updatedRanks[1].getId());
+
+        new CachedPlayer(uuid, updatedRanks[0].getIndex(), updatedRanks[1].getIndex(), System.currentTimeMillis()).update(updatedRanks[0].getIndex(), updatedRanks[1].getIndex());
     }
 
     /**
@@ -87,15 +92,44 @@ public class UpdateCacheRunnable extends BukkitRunnable {
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(new InputStreamReader((InputStream) request.getContent()));
         JsonObject object = element.getAsJsonObject();
+        JsonElement modernRank = object.get("modernRank");
 
-        updatedRanks[1] = HiveRank.getHiveRankFromName(object.get("rankName").getAsString());
+        HiveRankAPIResponse response = new Gson().fromJson(modernRank, new TypeToken<HiveRankAPIResponse>() {}.getType());
+
+        updatedRanks[1] = HiveRank.getHiveRankFromID(response.getIndex());
+
         if (displayRank == -1) {
-            updatedRanks[0] = HiveRank.getHiveRankFromName(object.get("rankName").getAsString());
+            updatedRanks[0] = HiveRank.getHiveRankFromID(response.getIndex());
             request.disconnect();
             return;
         }
+
         updatedRanks[0] = HiveRank.getHiveRankFromID(displayRank);
         request.disconnect();
+    }
 
+    private static class HiveRankAPIResponse {
+
+        private String enumName;
+        private String human;
+        private int index;
+
+        public HiveRankAPIResponse(String enumName, String human, int index) {
+            this.enumName = enumName;
+            this.human = human;
+            this.index = index;
+        }
+
+        public String getEnumName() {
+            return enumName;
+        }
+
+        public String getHuman() {
+            return human;
+        }
+
+        public int getIndex() {
+            return index;
+        }
     }
 }

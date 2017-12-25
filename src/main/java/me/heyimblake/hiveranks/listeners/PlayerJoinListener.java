@@ -30,7 +30,7 @@ public class PlayerJoinListener implements Listener {
 
             if ((System.currentTimeMillis() - manager.getCachedPlayer(player.getUniqueId()).getCached()) >= 1800000) {
                 if (!cachedPlayer.isHiveRankActive())
-                    new UpdateCacheRunnable(player.getUniqueId(), cachedPlayer.getActiveRank().getId()).runTaskAsynchronously(HiveRanks.getInstance());
+                    new UpdateCacheRunnable(player.getUniqueId(), cachedPlayer.getActiveRank().getIndex()).runTaskAsynchronously(HiveRanks.getInstance());
                 else
                     new UpdateCacheRunnable(player.getUniqueId()).runTaskAsynchronously(HiveRanks.getInstance());
                 return;

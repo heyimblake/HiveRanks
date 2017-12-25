@@ -64,8 +64,7 @@ public class CachedPlayerManager {
         try {
             Gson gson = new Gson();
             CachedPlayer cachedPlayer;
-            Type type = new TypeToken<CachedPlayer>() {
-            }.getType();
+            Type type = new TypeToken<CachedPlayer>() {}.getType();
             cachedPlayer = gson.fromJson(new FileReader(cacheFile), type);
             uuidCachedPlayerHashMap.put(cachedPlayer.getUuid(), cachedPlayer);
         } catch (FileNotFoundException e) {

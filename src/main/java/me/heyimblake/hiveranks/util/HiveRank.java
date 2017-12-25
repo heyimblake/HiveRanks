@@ -9,52 +9,75 @@ import org.bukkit.ChatColor;
  * @since 3/17/2017
  */
 public enum HiveRank {
-    REGULAR(0, "Regular Hive Member", "Regular", ChatColor.BLUE),
-    GOLD(1, "Gold Hive Member", "Gold", ChatColor.GOLD),
-    DIAMOND(2, "Diamond Hive Member", "Diamond", ChatColor.AQUA),
-    EMERALD(3, "Lifetime Emerald Hive Member", "Emerald", ChatColor.GREEN),
-    VIP(4, "VIP Player", "VIP", ChatColor.DARK_PURPLE),
-    MODERATOR(5, "Hive Moderator", "Moderator", ChatColor.RED),
-    SENIOR_MODERATOR(6, "Senior Hive Moderator", "Sr.Moderator", ChatColor.DARK_RED),
-    DEVELOPER(7, "Hive Developer", "Developer", ChatColor.GRAY),
-    OWNER(8, "Hive Founder and Owner", "Owner", ChatColor.YELLOW);
 
-    private int id;
-    private String rankName, niceName;
+    REGULAR(0, "Regular", ChatColor.BLUE),
+    GOLD(10, "Gold", ChatColor.GOLD),
+    DIAMOND(20, "Diamond", ChatColor.AQUA),
+    EMERALD(30, "Emerald", ChatColor.GREEN),
+    ULTIMATE(40, "Ultimate", ChatColor.LIGHT_PURPLE),
+    VIP(50,  "VIP", ChatColor.DARK_PURPLE),
+    YOUTUBER(51, "YouTuber", ChatColor.DARK_PURPLE),
+    STREAMER(52, "Streamer", ChatColor.DARK_PURPLE),
+    CONTRIBUTOR(53, "Contributor", ChatColor.DARK_PURPLE),
+    NECTAR(54, "Team Nectar", ChatColor.DARK_AQUA),
+    RESERVED_STAFF(60, "Reserved Staff", ChatColor.DARK_PURPLE),
+    MODERATOR(70, "Moderator", ChatColor.RED),
+    SRMODERATOR(80, "Senior Moderator", ChatColor.DARK_RED),
+    STAFFMANAGER(81, "Staff Manager", ChatColor.DARK_RED),
+    DEVELOPER(90, "Developer", ChatColor.GRAY),
+    OWNER(100, "Owner", ChatColor.YELLOW);
+
+    private int index;
+    private String human;
     private ChatColor color;
 
-    HiveRank(int id, String rankName, String niceName, ChatColor color) {
-        this.id = id;
-        this.rankName = rankName;
-        this.niceName = niceName;
+    HiveRank(int index, String human, ChatColor color) {
+        this.index = index;
+        this.human = human;
         this.color = color;
     }
 
     /**
-     * Get a HiveRank from a supplied RankID. If the RankID is invalid, it will return the Regular rank.
+     * Get a HiveRank from a supplied index. If the index is invalid, it will return the Regular rank.
      *
-     * @param id the id of the rank
+     * @param index the id of the rank
      * @return the rank of the supplied rankid, regular if invalid
      */
-    public static HiveRank getHiveRankFromID(int id) {
+    public static HiveRank getHiveRankFromID(int index) {
         for (HiveRank rank : HiveRank.values()) {
-            if (rank.getId() == id)
+            if (rank.getIndex() == index)
                 return rank;
         }
         return REGULAR;
     }
 
     /**
-     * Gets a HiveRank from a supplied rank name from TheHive's API. Will return Regular rank if invalid.
+     * Gets a HiveRank from a supplied rank name a human name. Will return Regular rank if invalid.
      *
      * @param rankName hive rank name
      * @return rank associated with supplied name, regular if invalid
      */
     public static HiveRank getHiveRankFromName(String rankName) {
         for (HiveRank rank : HiveRank.values()) {
-            if (rank.getRankName().equals(rankName))
+            if (rank.getHumanName().equals(rankName))
                 return rank;
         }
+        return REGULAR;
+    }
+
+    /**
+     * Gets a HiveRank from a supplied enum name. Will return Regular rank if invalid.
+     *
+     * @param enumName hive rank name
+     * @return rank associated with supplied name, regular if invalid
+     */
+    public static HiveRank getHiveRankFromEnumName(String enumName) {
+        for (HiveRank rank : HiveRank.values()) {
+            if (rank.name().equals(enumName)) {
+                return rank;
+            }
+        }
+
         return REGULAR;
     }
 
@@ -63,17 +86,8 @@ public enum HiveRank {
      *
      * @return rankid
      */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * The name of the rank, which used on The Hive's API.
-     *
-     * @return rankname
-     */
-    public String getRankName() {
-        return rankName;
+    public int getIndex() {
+        return index;
     }
 
     /**
@@ -81,8 +95,8 @@ public enum HiveRank {
      *
      * @return nicename
      */
-    public String getNiceName() {
-        return niceName;
+    public String getHumanName() {
+        return human;
     }
 
     /**
@@ -95,21 +109,21 @@ public enum HiveRank {
     }
 
     /**
-     * Sees if the rank is a premium rank. Excludes staff.
+     * Sees if the rank is a premium rank.
      *
      * @return true if premium, false otherwise
      */
     public boolean isPremium() {
-        return id >= 1 && id < 5;
+        return index > REGULAR.index;
     }
 
     /**
-     * Sees if the rank is a staff rank. Includes senior staff.
+     * Sees if the rank is a staff rank.
      *
      * @return true if staff or senior staff, false otherwise
      */
     public boolean isStaff() {
-        return id >= 5;
+        return index >= RESERVED_STAFF.index;
     }
 
     /**
@@ -118,6 +132,10 @@ public enum HiveRank {
      * @return true if senior staff, false otherwise
      */
     public boolean isSeniorStaff() {
-        return id >= 6;
+        return index >= SRMODERATOR.index;
+    }
+
+    public boolean isDeveloper() {
+        return index >= DEVELOPER.index;
     }
 }

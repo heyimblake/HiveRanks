@@ -115,8 +115,10 @@ public class CachedPlayer {
      */
     public void showIngameColors() {
         Player player = Bukkit.getServer().getPlayer(uuid);
+
         if (player == null)
             return;
+
         ScoreboardManager.getInstance().addPlayer(player);
         player.setDisplayName(CachedPlayerManager.getInstance().getCachedPlayer(uuid).getActiveRank().getColor() + player.getName() + ChatColor.RESET);
     }
